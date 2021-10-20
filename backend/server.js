@@ -1,7 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const products = require("./data/products");
 const connectDB = require("./config/db");
+const morgan = require("morgan");
+
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+
+const productRoutes = require("./routes/products");
 
 dotenv.config();
 
@@ -9,18 +13,16 @@ connectDB();
 
 const app = express();
 
+app.use(morgan("dev"));
+
 app.get("/", (req, res) => {
   res.send("eCommerce API Server is up and running");
 });
 
-app.get("/api/products", (req, res) => {
-  res.json(products);
-});
+app.use("/api/products", productRoutes);
 
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
