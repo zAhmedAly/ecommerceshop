@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
-// import products from "../products";
-
-import axios from "axios";
+import { listProductDetails } from "../actions/productActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const ProductScreen = ({ match }) => {
-  // const product = products.find((p) => p._id === match.params.id);
+  const dispatch = useDispatch();
 
-  const [product, setProduct] = useState({});
+  const productDetails = useSelector((state) => state.productDetails);
+
+  const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    const getProduct = async () => {
-      const { data } = await axios.get(`/products/${match.params.id}`);
-      setProduct(data);
-    };
-    getProduct();
-  }, [match]);
+    dispatch(listProductDetails(match.params.id));
+  }, [dispatch, match]);
 
   return (
     <>
@@ -26,7 +24,11 @@ const ProductScreen = ({ match }) => {
         {" "}
         Go Back
       </Link>
-      {product && (
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message varient="danger"> {error} </Message>
+      ) : (
         <Row>
           <Col md={4}>
             <Image src={product.image} alt={product.name} fluid rounded />
@@ -49,19 +51,6 @@ const ProductScreen = ({ match }) => {
                   <Col>{product.category}</Col>
                 </Row>
               </ListGroup.Item>
-
-              {/* <ListGroup.Item>
-              <Row>
-                <Col>Brand</Col>
-                <Col>Category</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col>{product.brand}</Col>
-                <Col>{product.category}</Col>
-              </Row>
-            </ListGroup.Item> */}
 
               <ListGroup.Item>
                 <Rating
