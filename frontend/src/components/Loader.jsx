@@ -6,15 +6,15 @@ const Loader = () => {
       animation="border"
       role="status"
       style={{
-        width: "100px",
-        height: "100px",
+        width: "50px",
+        height: "50px",
         position: "absolute",
         top: "50%",
-        marginTop: "-50px",
+        marginTop: "-25px",
         left: "50%",
-        marginLeft: "-50px",
-        // margin: "auto",
+        marginLeft: "-25px",
         display: "block",
+        backgroundColor: "lightgray",
       }}
     >
       <span className="sr-only">Loading...</span>

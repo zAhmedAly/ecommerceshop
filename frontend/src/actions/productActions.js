@@ -15,7 +15,7 @@ export const listProducts = () => async (dispatch) => {
 
     const { data } = await axios.get("/products");
 
-    setInterval(() => {
+    setTimeout(() => {
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     }, 500);
   } catch (error) {
@@ -35,7 +35,7 @@ export const listProductDetails = (id) => async (dispatch) => {
 
     const { data } = await axios.get(`/products/${id}`);
 
-    setInterval(() => {
+    setTimeout(() => {
       dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
     }, 500);
   } catch (error) {
