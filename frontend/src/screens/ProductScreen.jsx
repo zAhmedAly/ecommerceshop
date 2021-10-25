@@ -102,6 +102,7 @@ const ProductScreen = ({ match, history, location }) => {
                       <Col>Quatity</Col>
                       <Col>
                         <Form.Control
+                          style={{ textAlign: "center" }}
                           as="select"
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
