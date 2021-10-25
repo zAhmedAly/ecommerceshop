@@ -35,12 +35,16 @@ const Product = ({ product }) => {
                 : "Out Of Stock"}
             </Col>
             {product.countInStock > 0 && (
-              <Col xs={3} style={{ alignItems: "center" }}>
+              <Col
+                xs={3}
+                style={{ alignItems: "center", alignContent: "center" }}
+              >
                 <Button
                   type="button"
                   variant="light"
                   className="btn-sm"
                   onClick={handleAddToCart}
+                  style={{ borderRadius: "50%" }}
                 >
                   {" "}
                   {/* Add */}
