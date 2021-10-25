@@ -36,7 +36,12 @@ const Product = ({ product }) => {
             </Col>
             {product.countInStock > 0 && (
               <Col xs={3} style={{ alignItems: "center" }}>
-                <Button type="button" variant="light" onClick={handleAddToCart}>
+                <Button
+                  type="button"
+                  variant="light"
+                  className="btn-sm"
+                  onClick={handleAddToCart}
+                >
                   {" "}
                   {/* Add */}
                   <i className="fa-solid fa-cart-plus"></i>
