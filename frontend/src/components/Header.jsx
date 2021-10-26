@@ -1,22 +1,35 @@
-import React from "react";
-import { Badge, Container, Nav, Navbar } from "react-bootstrap";
+import { PersonRounded, ShoppingCartRounded } from "@material-ui/icons";
+import { LinkContainer } from "react-router-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 const Header = () => {
+  console.log(window.innerWidth);
   return (
     <header>
       <Navbar bg="primary" variant="dark" className="py-1" fixed="top">
         <Container>
-          <Navbar.Brand href="/">
-            <i className="fa-solid fa-bag-shopping"></i> eCommerce Shop
-          </Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand style={{ display: "flex", alignItems: "center" }}>
+              <i
+                className="fa-solid fa-bag-shopping"
+                style={{ marginRight: "3px" }}
+              ></i>{" "}
+              eCommerce Shop
+            </Navbar.Brand>
+          </LinkContainer>
+
           <Nav className="ml-auto">
-            <Nav.Link href="/cart">
-              <i className="fa-solid fa-cart-shopping"></i> Cart
-            </Nav.Link>
-            <Nav.Link href="/login">
-              {" "}
-              <i className="fa-solid fa-user"></i> Sign In
-            </Nav.Link>
+            <LinkContainer to="/cart">
+              <Nav.Link style={{ display: "flex", alignItems: "center" }}>
+                <ShoppingCartRounded /> <span> Cart </span>
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/login">
+              <Nav.Link style={{ display: "flex", alignItems: "center" }}>
+                <PersonRounded />
+                Sign In
+              </Nav.Link>
+            </LinkContainer>
           </Nav>
         </Container>
       </Navbar>
