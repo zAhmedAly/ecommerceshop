@@ -65,7 +65,7 @@ const Product = ({ product }) => {
                   width: "40px",
                   height: "100%",
                   borderRadius: "50%",
-                  backgroundColor: "var(--bs-gray-100)",
+                  backgroundColor: "var(--bs-gray-200)",
                   padding: "5px",
                   cursor: "pointer",
                 }}

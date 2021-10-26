@@ -42,10 +42,20 @@ const ProductScreen = ({ match, history, location }) => {
         <Message varient="danger"> {error} </Message>
       ) : (
         <Row>
-          <Col md={4}>
-            <Image src={product.image} alt={product.name} fluid rounded />
+          <Col md={4} className="mb-2">
+            <Image
+              src={product.image}
+              alt={product.name}
+              rounded
+              fluid
+              style={{
+                border: "5px solid white",
+                // width: "100%",
+                // height: "100%",
+              }}
+            />
           </Col>
-          <Col md={5}>
+          <Col md={5} className="mb-2">
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h3>{product.name}</h3>
@@ -71,13 +81,19 @@ const ProductScreen = ({ match, history, location }) => {
                 />
               </ListGroup.Item>
 
-              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
               <ListGroup.Item>
-                Description: {product.description}
+                Price:{" "}
+                <span style={{ fontSize: "20px", color: "var(--bs-red)" }}>
+                  ${product.price}
+                </span>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <strong>Description: </strong>
+                {product.description}
               </ListGroup.Item>
             </ListGroup>
           </Col>
-          <Col md={3}>
+          <Col md={3} className="mb-2">
             <Card>
               <ListGroup variant="flush">
                 <ListGroup.Item>
