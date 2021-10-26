@@ -42,7 +42,7 @@ const ProductScreen = ({ match, history, location }) => {
         <Message varient="danger"> {error} </Message>
       ) : (
         <Row>
-          <Col md={4} className="mb-2">
+          <Col md={3} className="mb-2">
             <Image
               src={product.image}
               alt={product.name}
@@ -50,8 +50,6 @@ const ProductScreen = ({ match, history, location }) => {
               fluid
               style={{
                 border: "5px solid white",
-                // width: "100%",
-                // height: "100%",
               }}
             />
           </Col>
@@ -62,14 +60,14 @@ const ProductScreen = ({ match, history, location }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Brand</Col>
+                  <Col>Brand:</Col>
                   <Col>{product.brand}</Col>
                 </Row>
               </ListGroup.Item>
 
               <ListGroup.Item>
                 <Row>
-                  <Col>Category</Col>
+                  <Col>Category:</Col>
                   <Col>{product.category}</Col>
                 </Row>
               </ListGroup.Item>
@@ -99,7 +97,7 @@ const ProductScreen = ({ match, history, location }) => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Price:</Col>
-                    <Col>
+                    <Col style={{ textAlign: "center" }}>
                       <strong>${product.price}</strong>
                     </Col>
                   </Row>
@@ -107,14 +105,16 @@ const ProductScreen = ({ match, history, location }) => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Status:</Col>
-                    <Col>
-                      {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
+                    <Col style={{ textAlign: "center" }}>
+                      {product.countInStock > 0
+                        ? `${product.countInStock} In Stock`
+                        : "Out Of Stock"}
                     </Col>
                   </Row>
                 </ListGroup.Item>
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
-                    <Row>
+                    <Row style={{ alignItems: "center" }}>
                       <Col>Quatity</Col>
                       <Col>
                         <Form.Control

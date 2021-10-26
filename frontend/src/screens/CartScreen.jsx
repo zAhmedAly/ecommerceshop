@@ -44,7 +44,7 @@ const CartScreen = ({ match, history, location }) => {
       </Row>
 
       <Row>
-        <Col md={4} className="mb-2">
+        <Col md={4} className="mb-1">
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -83,15 +83,17 @@ const CartScreen = ({ match, history, location }) => {
           ) : (
             <ListGroup variant="flush">
               {cartItems.map((item) => (
-                <ListGroup.Item key={item.product} className="mb-2">
+                <ListGroup.Item key={item.product} className="mb-1">
                   <Row style={{ alignItems: "center" }}>
-                    <Col md={2} style={{ marginBottom: "15px" }}>
+                    <Col md={2}>
+                      {/* style={{ marginBottom: "15px" }}> */}
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
-                    <Col md={4} style={{ marginBottom: "15px" }}>
+                    <Col md={4} style={{ marginBottom: "5px" }}>
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                     </Col>
-                    <Col md={6} style={{ marginBottom: "15px" }}>
+                    <Col md={6}>
+                      {/* style={{ marginBottom: "15px" }}> */}
                       <Row style={{ alignItems: "center" }}>
                         <Col xs={4} style={{ textAlign: "center" }}>
                           ${item.price}

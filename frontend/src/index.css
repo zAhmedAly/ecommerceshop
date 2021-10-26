@@ -3,10 +3,10 @@
   box-sizing: border-box;
   overflow-x: hidden;
 }
-html,
+/* html,
 body {
   background-color: var(--bs-gray-300);
-}
+} */
 
 main {
   min-height: 80vh;
