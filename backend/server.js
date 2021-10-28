@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const productRoutes = require("./routes/products");
+const userRoutes = require("./routes/users");
 
 dotenv.config();
 
