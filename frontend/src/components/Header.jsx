@@ -24,17 +24,20 @@ const Header = () => {
             to="/"
             style={{ display: "flex", alignItems: "center" }}
           >
-            <Navbar.Brand>
+            <Navbar.Brand style={{ display: "flex", alignItems: "center" }}>
               <i
                 className="fa-solid fa-bag-shopping"
                 style={{ marginRight: "5px" }}
               ></i>{" "}
-              eCommerce Shop
+              <span>eCommerce Shop</span>
             </Navbar.Brand>
           </LinkContainer>
 
           <Nav className="ml-auto">
-            <LinkContainer to="/cart">
+            <LinkContainer
+              to="/cart"
+              style={{ display: "flex", alignItems: "center" }}
+            >
               <Nav.Link style={{ display: "flex", alignItems: "center" }}>
                 <ShoppingCartRounded /> <span> Cart </span>
               </Nav.Link>
@@ -45,15 +48,17 @@ const Header = () => {
                   to="/profile"
                   style={{ display: "flex", alignItems: "center" }}
                 >
-                  <Nav.Link>
-                    <Settings />
-                    {userInfo.name}{" "}
+                  <Nav.Link style={{ display: "flex", alignItems: "center" }}>
+                    <Settings /> <span>{userInfo.name} </span>
                   </Nav.Link>
                 </LinkContainer>
                 <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
               </>
             ) : (
-              <LinkContainer to="/login">
+              <LinkContainer
+                to="/login"
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 <Nav.Link style={{ display: "flex", alignItems: "center" }}>
                   <PersonRounded />
                   Sign In
