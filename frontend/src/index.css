@@ -63,3 +63,16 @@ h2 {
 .carousel a {
   margin: 0 auto;
 }
+
+.form-control,
+.btn {
+  line-height: 0.75;
+}
+.form-label {
+  margin-bottom: 0;
+}
+
+.alert {
+  padding: 0.25rem 1rem;
+  text-align: center;
+}

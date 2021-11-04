@@ -139,7 +139,12 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         type: USER_UPDATE_PROFILE_SUCCESS,
         payload: data,
       });
-    }, 500);
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
+    }, 2000);
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     const message =
       error.response && error.response.data.message

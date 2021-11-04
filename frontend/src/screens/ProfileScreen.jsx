@@ -5,7 +5,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ const ProfileScreen = ({ location, history }) => {
   const { userInfo } = userLogin;
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
+  const { loading: updateLoading, success } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
@@ -30,12 +30,17 @@ const ProfileScreen = ({ location, history }) => {
       if (!user || !user.name) {
         dispatch(getUserDetails("profile"));
       } else {
-        setName(user.name);
-        setEmail(user.email);
+        setName(userInfo.name);
+        setEmail(userInfo.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
 
+    if (message || success) {
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+  }, [dispatch, history, userInfo, user, success, message]);
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -49,15 +54,15 @@ const ProfileScreen = ({ location, history }) => {
     <Row>
       <Col md={4}>
         <h2>User Profile</h2>
-        {message && <Message variant="danger">{message}</Message>}
-        {success && <Message variant="success">Profile Updated</Message>}
+        {/* {message && <Message variant="danger">{message}</Message>} */}
+        {/* {success && <Message variant="success">Profile Updated</Message>} */}
         {loading ? (
           <Loader />
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="name" className="py-2">
+          <Form onSubmit={submitHandler} className="mb-2">
+            <Form.Group controlId="name" className="mb-2">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="name"
@@ -102,6 +107,10 @@ const ProfileScreen = ({ location, history }) => {
             </Button>
           </Form>
         )}
+        {message && !success && <Message varient="danger">{message}</Message>}
+        {success && <Message variant="success">Profile Updated</Message>}
+        {error && <Message varient="danger">{error}</Message>}
+        {updateLoading && <Loader />}
       </Col>
       <Col md={8}>
         <h2>My Orders</h2>
