@@ -7,12 +7,16 @@ import FormContainer from "../components/FormContainer";
 
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
-  const { shippingAddress } = cart;
+  const { shippingAddress, cartItems } = cart;
 
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
+
+  if (cartItems && cartItems.length === 0) {
+    history.push("/cart");
+  }
 
   const dispatch = useDispatch();
 
@@ -32,8 +36,8 @@ const ShippingScreen = ({ history }) => {
           <Form.Control
             type="text"
             placeholder="Enter address"
-            name={address}
             value={address}
+            required
             onChange={(e) => setAddress(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -42,8 +46,8 @@ const ShippingScreen = ({ history }) => {
           <Form.Control
             type="text"
             placeholder="Enter City"
-            name={city}
             value={city}
+            required
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -52,8 +56,8 @@ const ShippingScreen = ({ history }) => {
           <Form.Control
             type="text"
             placeholder="Enter postal code"
-            name={postalCode}
             value={postalCode}
+            required
             onChange={(e) => setPostalCode(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -62,8 +66,8 @@ const ShippingScreen = ({ history }) => {
           <Form.Control
             type="text"
             placeholder="Enter Country"
-            name={country}
             value={country}
+            required
             onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
