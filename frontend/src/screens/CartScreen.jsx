@@ -23,6 +23,15 @@ const CartScreen = ({ match, history, location }) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { order } = orderDetails;
+
+  useEffect(() => {
+    if (order) {
+      history.push(`/order/${order._id}`);
+    }
+  }, [order, history]);
+
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
