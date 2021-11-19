@@ -37,7 +37,7 @@ const ProductScreen = ({ match, history, location }) => {
         Go Back
       </Link>
       {loading ? (
-        <Loader />
+        <div id="cover-spin"></div>
       ) : error ? (
         <Message varient="danger"> {error} </Message>
       ) : (

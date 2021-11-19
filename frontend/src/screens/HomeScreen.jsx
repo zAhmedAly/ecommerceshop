@@ -21,7 +21,7 @@ const HomeScreen = () => {
     <div className="py-3">
       <h1> Latest Products </h1>
       {loading ? (
-        <Loader />
+        <div id="cover-spin"></div>
       ) : error ? (
         <Message varient="danger"> {error} </Message>
       ) : (

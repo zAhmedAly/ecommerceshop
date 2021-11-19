@@ -77,7 +77,7 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, successDeliver, order]);
+  }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
@@ -89,7 +89,7 @@ const OrderScreen = ({ match, history }) => {
   };
 
   return loading ? (
-    <Loader />
+    <div id="cover-spin"></div>
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
@@ -200,9 +200,9 @@ const OrderScreen = ({ match, history }) => {
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
-                  {loadingPay && <Loader />}
+                  {loadingPay && <div id="cover-spin"></div>}
                   {!sdkReady ? (
-                    <Loader />
+                    <div id="cover-spin"></div>
                   ) : (
                     <PayPalButton
                       amount={order.totalPrice}
@@ -211,7 +211,7 @@ const OrderScreen = ({ match, history }) => {
                   )}
                 </ListGroup.Item>
               )}
-              {loadingDeliver && <Loader />}
+              {loadingDeliver && <div id="cover-spin"></div>}
               {userInfo &&
                 userInfo.isAdmin &&
                 order.isPaid &&

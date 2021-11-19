@@ -198,10 +198,12 @@ export const listMyOrders = () => async (dispatch, getState) => {
 
     const { data } = await axios.get(`/orders/myorders`, config);
 
-    dispatch({
-      type: ORDER_LIST_MY_SUCCESS,
-      payload: data,
-    });
+    setTimeout(() => {
+      dispatch({
+        type: ORDER_LIST_MY_SUCCESS,
+        payload: data,
+      });
+    }, 500);
   } catch (error) {
     const message =
       error.response && error.response.data.message
